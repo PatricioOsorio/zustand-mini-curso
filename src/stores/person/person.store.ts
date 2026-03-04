@@ -31,10 +31,12 @@ const personStoreApi: IPersonStoreCreator = (set) => ({
 });
 
 export const usePersonState = create<IPersonState>()(
+  // logger(
   devtools(
     persist(personStoreApi, {
       name: FIREBASE_STORAGE_KEY.PERSON,
       storage: firebaseStorage,
     })
   )
+  // )
 );
