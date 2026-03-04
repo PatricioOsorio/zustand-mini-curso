@@ -1,6 +1,7 @@
-import { LOCAL_STORAGE_KEY } from '@utils/constants';
-import { create } from 'zustand';
+import { create, StateCreator } from 'zustand';
 import { persist } from 'zustand/middleware';
+
+import { LOCAL_STORAGE_KEY } from '@utils/constants';
 
 export interface IPerson {
   firstName: string;
@@ -14,17 +15,16 @@ export interface IActions {
 
 export type IPersonState = IPerson & IActions;
 
-export const usePersonState = create<IPersonState>()(
-  persist(
-    (set) => ({
-      firstName: '',
-      lastName: '',
+const personStoreApi: StateCreator<IPersonState> = (set) => ({
+  firstName: '',
+  lastName: '',
 
-      setFirstName: (value) => set((state) => ({ firstName: value })),
-      setLastName: (value) => set((state) => ({ lastName: value })),
-    }),
-    {
-      name: LOCAL_STORAGE_KEY.PERSON,
-    }
-  )
+  setFirstName: (value) => set((state) => ({ firstName: value })),
+  setLastName: (value) => set((state) => ({ lastName: value })),
+});
+
+export const usePersonState = create<IPersonState>()(
+  persist(personStoreApi, {
+    name: LOCAL_STORAGE_KEY.PERSON,
+  })
 );
