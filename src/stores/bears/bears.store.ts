@@ -1,4 +1,3 @@
-import { BlackBear } from '@components/BlackBear';
 import { create } from 'zustand';
 
 export interface IBear {
