@@ -1,6 +1,7 @@
 import { PandaBear } from '@components/PandaBear';
 import { PolarBear } from '@components/PolarBear';
 import { BlackBear } from '@components/BlackBear';
+import { BearsList } from '@components/BearsList';
 
 export const BearPage = () => {
   return (
@@ -11,9 +12,9 @@ export const BearPage = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         <BlackBear />
-
         <PolarBear />
         <PandaBear />
+        <BearsList />
       </div>
     </>
   );
