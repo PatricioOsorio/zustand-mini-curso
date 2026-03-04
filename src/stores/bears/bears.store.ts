@@ -17,6 +17,8 @@ export interface IBearState {
   increasePandaBears: (by: number) => void;
 
   doNothing: () => void;
+  addBear: (bear: IBear) => void;
+  clearBears: () => void;
 }
 
 const initialBears: IBear[] = [
@@ -37,4 +39,6 @@ export const useBearStore = create<IBearState>()((set) => ({
   increasePandaBears: (by) => set((state) => ({ pandaBears: state.pandaBears + by })),
 
   doNothing: () => set((state) => ({ bears: [...state.bears] })),
+  addBear: (bear) => set((state) => ({ bears: [...state.bears, bear] })),
+  clearBears: () => set({ bears: [] }),
 }));
