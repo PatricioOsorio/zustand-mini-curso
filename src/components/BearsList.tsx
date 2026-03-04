@@ -33,7 +33,7 @@ export const BearsList = () => {
       </button>
 
       {bears.map((b) => (
-        <div>{b.name}</div>
+        <div key={b.id}>{b.name}</div>
       ))}
     </WhiteCard>
   );

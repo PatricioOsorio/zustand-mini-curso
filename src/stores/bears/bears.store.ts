@@ -1,4 +1,6 @@
-import { create } from 'zustand';
+import { LOCAL_STORAGE_KEY } from '@utils/constants';
+import { create, StateCreator } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 export interface IBear {
   id: number;
@@ -12,9 +14,7 @@ export interface IBearState {
 
   bears: IBear[];
 
-  computed: {
-    totalBears: number;
-  };
+  totalBears: () => number;
 
   increaseBlackBears: (by: number) => void;
   increasePolarBears: (by: number) => void;
@@ -31,18 +31,16 @@ const initialBears: IBear[] = [
   { id: 3, name: 'Paddington' },
 ];
 
-export const useBearStore = create<IBearState>()((set, get) => ({
+const berarStoreApi: StateCreator<IBearState> = (set, get) => ({
   blackBears: 1,
   polarBears: 5,
   pandaBears: 10,
 
   bears: initialBears,
 
-  computed: {
-    get totalBears() {
-      const total = get().blackBears + get().polarBears + get().pandaBears + get().bears.length;
-      return total;
-    },
+  totalBears: () => {
+    const total = get().blackBears + get().polarBears + get().pandaBears + get().bears.length;
+    return total;
   },
 
   increaseBlackBears: (by) => set((state) => ({ blackBears: state.blackBears + by })),
@@ -52,4 +50,10 @@ export const useBearStore = create<IBearState>()((set, get) => ({
   doNothing: () => set((state) => ({ bears: [...state.bears] })),
   addBear: (bear) => set((state) => ({ bears: [...state.bears, bear] })),
   clearBears: () => set({ bears: [] }),
-}));
+});
+
+export const useBearStore = create<IBearState>()(
+  persist(berarStoreApi, {
+    name: LOCAL_STORAGE_KEY.BEAR,
+  })
+);
