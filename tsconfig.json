@@ -27,7 +27,8 @@
       "@pages/*": ["src/pages/*"],
       "@router/*": ["src/router/*"],
       "@stores/*": ["src/stores/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@interfaces/*": ["src/interfaces/*"]
     }
   },
   "include": ["src"],
