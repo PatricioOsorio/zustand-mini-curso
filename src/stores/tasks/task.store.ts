@@ -1,15 +1,16 @@
-import { ITask } from '@interfaces/task.interface';
+import { ITask, ITaskStatus } from '@interfaces/task.interface';
 import { create, StateCreator } from 'zustand';
 
 type ITaskRecord = Record<string, ITask>;
 
 export interface ITaskState {
   tasks: ITaskRecord;
+  getTaskByStatus: (status: ITaskStatus) => ITask[];
 }
 
 export interface ITaskActions {}
 
-const storeApi: StateCreator<ITaskState> = (set) => ({
+const storeApi: StateCreator<ITaskState> = (set, get) => ({
   tasks: {
     'TASK-1': {
       id: 'TASK-1',
@@ -29,6 +30,12 @@ const storeApi: StateCreator<ITaskState> = (set) => ({
       description: 'Description for Task 3',
       status: 'completed',
     },
+  },
+
+  getTaskByStatus: (status: ITaskStatus) => {
+    const tasks = get().tasks;
+
+    return Object.values(tasks).filter((task) => task.status === status);
   },
 });
 
