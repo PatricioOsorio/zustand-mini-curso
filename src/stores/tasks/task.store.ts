@@ -16,7 +16,7 @@ const storeApi: StateCreator<ITaskState> = (set, get) => ({
       id: 'TASK-1',
       title: 'Task 1',
       description: 'Description for Task 1',
-      status: 'pending',
+      status: 'open',
     },
     'TASK-2': {
       id: 'TASK-2',
@@ -28,13 +28,13 @@ const storeApi: StateCreator<ITaskState> = (set, get) => ({
       id: 'TASK-3',
       title: 'Task 3',
       description: 'Description for Task 3',
-      status: 'completed',
+      status: 'done',
     },
-    "TASK-4": {
+    'TASK-4': {
       id: 'TASK-4',
       title: 'Task 4',
       description: 'Description for Task 4',
-      status: 'pending',
+      status: 'open',
     },
   },
 

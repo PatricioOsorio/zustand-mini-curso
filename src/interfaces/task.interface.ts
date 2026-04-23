@@ -5,4 +5,4 @@ export interface ITask {
   status: ITaskStatus;
 }
 
-export type ITaskStatus = 'pending' | 'in-progress' | 'completed';
+export type ITaskStatus = 'done' | 'open' | 'in-progress';
