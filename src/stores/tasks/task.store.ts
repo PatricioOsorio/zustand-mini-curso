@@ -1,16 +1,21 @@
 import { ITask, ITaskStatus } from '@interfaces/task.interface';
 import { create, StateCreator } from 'zustand';
+import { devtools } from 'zustand/middleware';
 
 type ITaskRecord = Record<string, ITask>;
 
 export interface ITaskState {
+  draggingTaskId?: string;
   tasks: ITaskRecord;
   getTaskByStatus: (status: ITaskStatus) => ITask[];
+  setDraggingTaskId: (taskId: string) => void;
+  removeDraggingTaskId: () => void;
 }
 
 export interface ITaskActions {}
 
 const storeApi: StateCreator<ITaskState> = (set, get) => ({
+  draggingTaskId: undefined,
   tasks: {
     'TASK-1': {
       id: 'TASK-1',
@@ -43,6 +48,14 @@ const storeApi: StateCreator<ITaskState> = (set, get) => ({
 
     return Object.values(tasks).filter((task) => task.status === status);
   },
+
+  setDraggingTaskId(taskId: string) {
+    set({ draggingTaskId: taskId });
+  },
+
+  removeDraggingTaskId() {
+    set({ draggingTaskId: undefined });
+  },
 });
 
-export const useTaskStore = create<ITaskState>()(storeApi);
+export const useTaskStore = create<ITaskState>()(devtools(storeApi));
