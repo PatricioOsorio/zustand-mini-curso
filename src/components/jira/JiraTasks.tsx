@@ -1,3 +1,5 @@
+import { DragEvent } from 'react';
+
 import { ITask, ITaskStatus } from '@interfaces/task.interface';
 import { IoCheckmarkCircleOutline, IoEllipsisHorizontalOutline } from 'react-icons/io5';
 import { SingleTask } from './SingleTask';
@@ -9,8 +11,29 @@ interface IJiraTasksProps {
 }
 
 export const JiraTasks = ({ title, tasks, value }: IJiraTasksProps) => {
+  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+
+    console.log('over');
+  };
+  const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+
+    console.log('leave');
+  };
+  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+
+    console.log(`drop ${value}`);
+  };
+
   return (
-    <div className="!text-black relative flex flex-col rounded-[20px]  bg-white bg-clip-border shadow-3xl shadow-shadow-500  w-full !p-4 3xl:p-![18px]">
+    <div
+      className="!text-black relative flex flex-col rounded-[20px]  bg-white bg-clip-border shadow-3xl shadow-shadow-500  w-full !p-4 3xl:p-![18px]"
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+    >
       {/* Task Header */}
       <div className="relative flex flex-row justify-between">
         <div className="flex items-center justify-center">
