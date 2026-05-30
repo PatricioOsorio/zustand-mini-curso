@@ -1,35 +1,35 @@
-import { DragEvent } from 'react';
+import { DragEvent } from 'react'
 
-import { ITask, ITaskStatus } from '@interfaces/task.interface';
-import { IoCheckmarkCircleOutline, IoEllipsisHorizontalOutline } from 'react-icons/io5';
-import { SingleTask } from './SingleTask';
+import { ITask, ITaskStatus } from '@interfaces/task.interface'
+import { IoCheckmarkCircleOutline, IoEllipsisHorizontalOutline } from 'react-icons/io5'
+import { SingleTask } from './SingleTask'
 
 interface IJiraTasksProps {
-  title: string;
-  tasks: ITask[];
-  value: ITaskStatus;
+  title: string
+  tasks: ITask[]
+  value: ITaskStatus
 }
 
 export const JiraTasks = ({ title, tasks, value }: IJiraTasksProps) => {
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    console.log('over');
-  };
+    console.log('over')
+  }
   const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    console.log('leave');
-  };
+    console.log('leave')
+  }
   const handleDrop = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    console.log(`drop ${value}`);
-  };
+    console.log(`drop ${value}`)
+  }
 
   return (
     <div
-      className="!text-black relative flex flex-col rounded-[20px]  bg-white bg-clip-border shadow-3xl shadow-shadow-500  w-full !p-4 3xl:p-![18px]"
+      className="shadow-3xl shadow-shadow-500 3xl:p-![18px] relative flex w-full flex-col rounded-[20px] bg-white bg-clip-border !p-4 !text-black"
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
@@ -38,12 +38,12 @@ export const JiraTasks = ({ title, tasks, value }: IJiraTasksProps) => {
       <div className="relative flex flex-row justify-between">
         <div className="flex items-center justify-center">
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-indigo-100">
-            <span className="flex justify-center items-center h-6 w-6 text-brand-500">
+            <span className="text-brand-500 flex h-6 w-6 items-center justify-center">
               <IoCheckmarkCircleOutline style={{ fontSize: '50px' }} />
             </span>
           </div>
 
-          <h4 className="ml-4 text-xl font-bold text-navy-700">{title}</h4>
+          <h4 className="text-navy-700 ml-4 text-xl font-bold">{title}</h4>
         </div>
 
         <button>
@@ -58,5 +58,5 @@ export const JiraTasks = ({ title, tasks, value }: IJiraTasksProps) => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}

@@ -1,17 +1,17 @@
-import { createJSONStorage, StateStorage } from 'zustand/middleware';
+import { createJSONStorage, StateStorage } from 'zustand/middleware'
 
 const customSessionStorageBase: StateStorage = {
   getItem: function (name: string): string | null | Promise<string | null> {
-    const data = sessionStorage.getItem(name);
+    const data = sessionStorage.getItem(name)
 
-    return data;
+    return data
   },
   setItem: function (name: string, value: string): void {
-    sessionStorage.setItem(name, value);
+    sessionStorage.setItem(name, value)
   },
   removeItem: function (name: string): void {
-    console.log(`removeItem: `, name);
+    console.log(`removeItem: `, name)
   },
-};
+}
 
-export const customSessionStorage = createJSONStorage(() => customSessionStorageBase);
+export const customSessionStorage = createJSONStorage(() => customSessionStorageBase)

@@ -1,12 +1,12 @@
-import { WhiteCard } from '@components/shared/cards/WhiteCard';
-import { usePersonState } from '@stores/person/person.store';
+import { WhiteCard } from '@components/shared/cards/WhiteCard'
+import { usePersonState } from '@stores/person/person.store'
 
 export const PersonPage = () => {
-  const firstName = usePersonState((s) => s.firstName);
-  const lastName = usePersonState((s) => s.lastName);
+  const firstName = usePersonState((s) => s.firstName)
+  const lastName = usePersonState((s) => s.lastName)
 
-  const setFirstName = usePersonState((s) => s.setFirstName);
-  const setLastName = usePersonState((s) => s.setLastName);
+  const setFirstName = usePersonState((s) => s.setFirstName)
+  const setLastName = usePersonState((s) => s.setLastName)
 
   return (
     <>
@@ -50,19 +50,19 @@ export const PersonPage = () => {
               </div>
             </div>
 
-            <pre className="bg-gray-200 p-5 rounded-[20px]">
+            <pre className="rounded-[20px] bg-gray-200 p-5">
               {JSON.stringify(
                 {
                   firstName,
                   lastName,
                 },
                 null,
-                2
+                2,
               )}
             </pre>
           </form>
         </div>
       </WhiteCard>
     </>
-  );
-};
+  )
+}

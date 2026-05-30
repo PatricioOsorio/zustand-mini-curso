@@ -1,12 +1,12 @@
-import { useTaskStore } from '@stores/tasks/task.store';
-import { JiraTasks } from '../../components';
+import { useTaskStore } from '@stores/tasks/task.store'
+import { JiraTasks } from '../../components'
 
 export const JiraPage = () => {
-  const getTaskByStatus = useTaskStore((s) => s.getTaskByStatus);
+  const getTaskByStatus = useTaskStore((s) => s.getTaskByStatus)
 
-  const inProgress = getTaskByStatus('in-progress');
-  const open = getTaskByStatus('open');
-  const done = getTaskByStatus('done');
+  const inProgress = getTaskByStatus('in-progress')
+  const open = getTaskByStatus('open')
+  const done = getTaskByStatus('done')
 
   return (
     <>
@@ -14,7 +14,7 @@ export const JiraPage = () => {
       <p>Manejo de estado con objectos de Zustand</p>
       <hr />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <JiraTasks title="Pendientes" value="open" tasks={open} />
 
         <JiraTasks title="Avanzando" value="in-progress" tasks={inProgress} />
@@ -22,5 +22,5 @@ export const JiraPage = () => {
         <JiraTasks title="Terminadas" value="done" tasks={done} />
       </div>
     </>
-  );
-};
+  )
+}

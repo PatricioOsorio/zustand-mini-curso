@@ -1,9 +1,9 @@
-import { useBearStore } from '@stores/bears/bears.store';
-import { BearCounter } from './BearCounter';
+import { useBearStore } from '@stores/bears/bears.store'
+import { BearCounter } from './BearCounter'
 
 export const PandaBear = () => {
-  const pandaBears = useBearStore((state) => state.pandaBears);
-  const increasePandaBears = useBearStore((state) => state.increasePandaBears);
+  const pandaBears = useBearStore((state) => state.pandaBears)
+  const increasePandaBears = useBearStore((state) => state.increasePandaBears)
 
   return (
     <BearCounter
@@ -12,5 +12,5 @@ export const PandaBear = () => {
       handleAdd={() => increasePandaBears(+1)}
       handleSubtract={() => increasePandaBears(-1)}
     />
-  );
-};
+  )
+}

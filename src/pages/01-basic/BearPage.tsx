@@ -1,7 +1,7 @@
-import { PandaBear } from '@components/PandaBear';
-import { PolarBear } from '@components/PolarBear';
-import { BlackBear } from '@components/BlackBear';
-import { BearsList } from '@components/BearsList';
+import { PandaBear } from '@components/PandaBear'
+import { PolarBear } from '@components/PolarBear'
+import { BlackBear } from '@components/BlackBear'
+import { BearsList } from '@components/BearsList'
 
 export const BearPage = () => {
   return (
@@ -10,12 +10,12 @@ export const BearPage = () => {
       <p>Manejo de estado simple de Zustand</p>
       <hr />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <BlackBear />
         <PolarBear />
         <PandaBear />
         <BearsList />
       </div>
     </>
-  );
-};
+  )
+}
