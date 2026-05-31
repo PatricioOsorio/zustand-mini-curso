@@ -1,12 +1,19 @@
 import { useTaskStore } from '@stores/tasks/task.store';
 import { JiraTasks } from '../../components';
+import { useMemo } from 'react';
 
 export const JiraPage = () => {
-  const getTaskByStatus = useTaskStore((s) => s.getTaskByStatus);
+  const tasks = useTaskStore((s) => s.tasks);
 
-  const inProgress = getTaskByStatus('in-progress');
-  const open = getTaskByStatus('open');
-  const done = getTaskByStatus('done');
+  const { open, inProgress, done } = useMemo(() => {
+    const allTasks = Object.values(tasks);
+
+    return {
+      open: allTasks.filter((task) => task.status === 'open'),
+      inProgress: allTasks.filter((task) => task.status === 'in-progress'),
+      done: allTasks.filter((task) => task.status === 'done'),
+    };
+  }, [tasks]);
 
   return (
     <>

@@ -10,6 +10,7 @@ export interface ITaskState {
   getTaskByStatus: (status: ITaskStatus) => ITask[];
   setDraggingTaskId: (taskId: string) => void;
   removeDraggingTaskId: () => void;
+  changeStatus: (taskId: string, status: ITaskStatus) => void;
 }
 
 export interface ITaskActions {}
@@ -55,6 +56,17 @@ const storeApi: StateCreator<ITaskState> = (set, get) => ({
 
   removeDraggingTaskId() {
     set({ draggingTaskId: undefined });
+  },
+
+  changeStatus(taskId: string, status: ITaskStatus) {
+    const task = get().tasks[taskId];
+
+    const updatedTask: ITask = {
+      ...task,
+      status: status,
+    };
+
+    set((state) => ({ tasks: { ...state.tasks, [taskId]: updatedTask } }));
   },
 });
 
