@@ -7,10 +7,10 @@ export const PandaBear = () => {
 
   return (
     <BearCounter
-      onAdd={() => increasePandaBears(+1)}
-      onSubtract={() => increasePandaBears(-1)}
       title="Osos panda"
       value={pandaBears}
+      onAdd={() => increasePandaBears(+1)}
+      onSubtract={() => increasePandaBears(-1)}
     />
   )
 }
