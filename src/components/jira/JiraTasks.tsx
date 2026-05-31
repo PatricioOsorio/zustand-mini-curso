@@ -1,8 +1,10 @@
-import { DragEvent } from 'react'
+import { DragEvent, useState } from 'react'
 
 import { ITask, ITaskStatus } from '@interfaces/task.interface'
 import { IoCheckmarkCircleOutline, IoEllipsisHorizontalOutline } from 'react-icons/io5'
 import { SingleTask } from './SingleTask'
+import { useTaskStore } from '@stores/tasks/task.store'
+import { cn } from '@utils/cn'
 
 interface IJiraTasksProps {
   title: string
@@ -11,25 +13,33 @@ interface IJiraTasksProps {
 }
 
 export const JiraTasks = ({ title, tasks, value }: IJiraTasksProps) => {
+  const isDragging = useTaskStore((s) => !!s.draggingTaskId)
+  const [isOver, setIsOver] = useState(false)
+
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault()
 
-    console.log('over')
+    setIsOver(true)
   }
   const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault()
 
-    console.log('leave')
+    setIsOver(false)
   }
   const handleDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault()
 
+    setIsOver(false)
     console.log(`drop ${value}`)
   }
 
   return (
     <div
-      className="shadow-3xl shadow-shadow-500 3xl:p-![18px] relative flex w-full flex-col rounded-[20px] bg-white bg-clip-border !p-4 !text-black"
+      className={cn(
+        'shadow-3xl shadow-shadow-500 3xl:p-![18px] relative flex w-full flex-col rounded-[20px] border-4 bg-white bg-clip-border !p-4 !text-black transition-all duration-300 ease-out',
+        { 'border-dotted border-blue-500': isDragging },
+        { 'scale-[1.01] border-red-600 shadow-red-200 ring-2 ring-red-500/20': isOver },
+      )}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
