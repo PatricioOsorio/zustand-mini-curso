@@ -9,8 +9,8 @@ export const BlackBear = () => {
     <BearCounter
       title="Osos negros"
       value={blackBears}
-      handleAdd={() => increaseBlackBears(+1)}
-      handleSubtract={() => increaseBlackBears(-1)}
+      onAdd={() => increaseBlackBears(+1)}
+      onSubtract={() => increaseBlackBears(-1)}
     />
   )
 }

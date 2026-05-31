@@ -10,7 +10,7 @@ interface Props {
 
 export const SideMenuItem = ({ href, Icon, title, subTitle }: Props) => {
   return (
-    <NavLink key={href} to={href} end>
+    <NavLink key={href} end to={href}>
       <div>
         <Icon />
       </div>

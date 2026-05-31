@@ -44,10 +44,10 @@ const menuItems: MenuItem[] = [
 export const SideMenu = () => {
   return (
     <div
-      id="menu"
       className="left-0 z-10 min-h-screen w-80 overflow-y-scroll bg-gray-900 text-slate-300"
+      id="menu"
     >
-      <div id="logo" className="my-4 px-6">
+      <div className="my-4 px-6" id="logo">
         {/* Title */}
         <h1 className="text-lg font-bold text-white md:text-2xl">
           Zustand
@@ -57,14 +57,14 @@ export const SideMenu = () => {
       </div>
 
       {/*  Profile */}
-      <div id="profile" className="px-6 py-10">
+      <div className="px-6 py-10" id="profile">
         <p className="text-slate-500">Bienvenido,</p>
-        <a href="#" className="inline-flex items-center space-x-2">
+        <a className="inline-flex items-center space-x-2" href="#">
           <span>
             <img
+              alt=""
               className="h-8 w-8 rounded-full"
               src="https://placehold.co/200x200/orange/white"
-              alt=""
             />
           </span>
           <span className="text-sm font-bold md:text-base">Edward Tompson</span>
@@ -72,13 +72,13 @@ export const SideMenu = () => {
       </div>
 
       {/* Menu Items */}
-      <nav id="nav" className="w-full px-6">
+      <nav className="w-full px-6" id="nav">
         {menuItems.map((item) => (
           <SideMenuItem key={item.href} {...item} />
         ))}
 
         {/* Logout */}
-        <NavLink to={'/auth/login'} className="mt-10">
+        <NavLink className="mt-10" to={'/auth/login'}>
           <div>
             <IoLogOutOutline />
           </div>

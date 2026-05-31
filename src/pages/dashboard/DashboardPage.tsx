@@ -21,31 +21,31 @@ export const Dashboard = () => {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <WhiteCard centered>
-          <IoPawOutline size={50} className="text-indigo-600" />
+          <IoPawOutline className="text-indigo-600" size={50} />
           <h2>Osos</h2>
           <p>{totalBears()}</p>
         </WhiteCard>
 
         <WhiteCard centered>
-          <IoAccessibilityOutline size={50} className="text-indigo-600" />
+          <IoAccessibilityOutline className="text-indigo-600" size={50} />
           <h2>Persona</h2>
           <p>{firstName}</p>
         </WhiteCard>
 
         <WhiteCard centered>
-          <IoListOutline size={50} className="text-indigo-600" />
+          <IoListOutline className="text-indigo-600" size={50} />
           <h2>Tareas</h2>
           <p>Información</p>
         </WhiteCard>
 
         <WhiteCard centered>
-          <IoHeartOutline size={50} className="text-indigo-600" />
+          <IoHeartOutline className="text-indigo-600" size={50} />
           <h2>Boda</h2>
           <p>Información</p>
         </WhiteCard>
 
         <WhiteCard centered>
-          <IoLockClosedOutline size={50} className="text-indigo-600" />
+          <IoLockClosedOutline className="text-indigo-600" size={50} />
           <h2>Auth</h2>
           <p>Información</p>
         </WhiteCard>

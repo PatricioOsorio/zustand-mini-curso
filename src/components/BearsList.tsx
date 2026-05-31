@@ -20,15 +20,15 @@ export const BearsList = () => {
     <WhiteCard centered>
       <h1>Osos</h1>
 
-      <button onClick={doNothing} className="btn">
+      <button className="btn" onClick={doNothing}>
         Do nothing
       </button>
 
-      <button onClick={handleAddBear} className="btn">
+      <button className="btn" onClick={handleAddBear}>
         Add bear
       </button>
 
-      <button onClick={clearBears} className="btn">
+      <button className="btn" onClick={clearBears}>
         Clear bears
       </button>
 

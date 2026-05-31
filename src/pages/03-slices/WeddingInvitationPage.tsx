@@ -16,7 +16,7 @@ export const WeddingInvitationPage = () => {
                   <label className="mb-3 block text-base font-medium text-[#07074D]">
                     Primer Nombre
                   </label>
-                  <input type="text" name="firstName" id="firstName" placeholder="Primer Nombre" />
+                  <input id="firstName" name="firstName" placeholder="Primer Nombre" type="text" />
                 </div>
               </div>
               <div className="w-full px-3 sm:w-1/2">
@@ -24,7 +24,7 @@ export const WeddingInvitationPage = () => {
                   <label className="mb-3 block text-base font-medium text-[#07074D]">
                     Apellido
                   </label>
-                  <input type="text" name="lastName" id="lastName" placeholder="Apellido" />
+                  <input id="lastName" name="lastName" placeholder="Apellido" type="text" />
                 </div>
               </div>
             </div>
@@ -33,12 +33,12 @@ export const WeddingInvitationPage = () => {
                 ¿Cuántos invitados traerá?
               </label>
               <input
-                type="number"
-                name="guestNumber"
-                id="guestNumber"
-                placeholder="5"
-                min="0"
                 className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                id="guestNumber"
+                min="0"
+                name="guestNumber"
+                placeholder="5"
+                type="number"
               />
             </div>
 
@@ -48,7 +48,7 @@ export const WeddingInvitationPage = () => {
                   <label className="mb-3 block text-base font-medium text-[#07074D]">
                     Fecha de evento
                   </label>
-                  <input type="date" name="eventDate" id="eventDate" />
+                  <input id="eventDate" name="eventDate" type="date" />
                 </div>
               </div>
               <div className="w-full px-3 sm:w-1/2">
@@ -56,7 +56,7 @@ export const WeddingInvitationPage = () => {
                   <label className="mb-3 block text-base font-medium text-[#07074D]">
                     Hora del evento
                   </label>
-                  <input type="time" name="eventTime" id="eventTime" />
+                  <input id="eventTime" name="eventTime" type="time" />
                 </div>
               </div>
             </div>
@@ -67,11 +67,11 @@ export const WeddingInvitationPage = () => {
               </label>
               <div className="flex items-center space-x-6">
                 <div className="flex items-center">
-                  <input type="radio" name="isComing" id="radioButton1" className="h-5 w-5" />
+                  <input className="h-5 w-5" id="radioButton1" name="isComing" type="radio" />
                   <label className="pl-3 text-base font-medium text-[#07074D]">Si</label>
                 </div>
                 <div className="flex items-center">
-                  <input type="radio" name="isComing" id="radioButton2" className="h-5 w-5" />
+                  <input className="h-5 w-5" id="radioButton2" name="isComing" type="radio" />
                   <label className="pl-3 text-base font-medium text-[#07074D]">No</label>
                 </div>
               </div>

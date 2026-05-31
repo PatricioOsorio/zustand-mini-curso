@@ -30,8 +30,8 @@ export const JiraTasks = ({ title, tasks, value }: IJiraTasksProps) => {
   return (
     <div
       className="shadow-3xl shadow-shadow-500 3xl:p-![18px] relative flex w-full flex-col rounded-[20px] bg-white bg-clip-border !p-4 !text-black"
-      onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
+      onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
       {/* Task Header */}

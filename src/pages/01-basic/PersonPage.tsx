@@ -24,10 +24,10 @@ export const PersonPage = () => {
                     Primer Nombre
                   </label>
                   <input
-                    type="text"
-                    name="firstName"
                     id="firstName"
+                    name="firstName"
                     placeholder="Primer Nombre"
+                    type="text"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                   />
@@ -39,10 +39,10 @@ export const PersonPage = () => {
                     Apellido
                   </label>
                   <input
-                    type="text"
-                    name="lastName"
                     id="lastName"
+                    name="lastName"
                     placeholder="Apellido"
+                    type="text"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                   />

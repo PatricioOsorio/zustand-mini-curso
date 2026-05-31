@@ -20,10 +20,10 @@ export const SingleTask: React.FC<ISingleTaskProps> = ({ task }) => {
 
   return (
     <div
-      draggable={true}
       className="mt-5 flex items-center justify-between p-2"
-      onDragStart={handleDragStart}
+      draggable={true}
       onDragEnd={handleDragEnd}
+      onDragStart={handleDragStart}
     >
       <div className="flex items-center justify-center gap-2">
         <p className="text-navy-700 text-base font-bold">{task.title}</p>
