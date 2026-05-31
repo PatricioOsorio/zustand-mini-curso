@@ -1,20 +1,20 @@
-import { FormEvent } from 'react'
+import { FormEvent } from 'react';
 
 export const LoginPage = () => {
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+    event.preventDefault();
     // const { username, password, remember } = event.target as HTMLFormElement;
     const { username, password, remember } = event.target as typeof event.target & {
-      username: { value: string }
-      password: { value: string }
-      remember: { checked: boolean }
-    }
-    console.log(username.value, password.value, remember.checked)
+      username: { value: string };
+      password: { value: string };
+      remember: { checked: boolean };
+    };
+    console.log(username.value, password.value, remember.checked);
 
-    username.value = ''
-    password.value = ''
-    remember.checked = false
-  }
+    username.value = '';
+    password.value = '';
+    remember.checked = false;
+  };
 
   return (
     <>
@@ -52,5 +52,5 @@ export const LoginPage = () => {
         </a>
       </div>
     </>
-  )
-}
+  );
+};

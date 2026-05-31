@@ -1,12 +1,12 @@
-import { useTaskStore } from '@stores/tasks/task.store'
-import { JiraTasks } from '../../components'
+import { useTaskStore } from '@stores/tasks/task.store';
+import { JiraTasks } from '../../components';
 
 export const JiraPage = () => {
-  const getTaskByStatus = useTaskStore((s) => s.getTaskByStatus)
+  const getTaskByStatus = useTaskStore((s) => s.getTaskByStatus);
 
-  const inProgress = getTaskByStatus('in-progress')
-  const open = getTaskByStatus('open')
-  const done = getTaskByStatus('done')
+  const inProgress = getTaskByStatus('in-progress');
+  const open = getTaskByStatus('open');
+  const done = getTaskByStatus('done');
 
   return (
     <>
@@ -22,5 +22,5 @@ export const JiraPage = () => {
         <JiraTasks tasks={done} title="Terminadas" value="done" />
       </div>
     </>
-  )
-}
+  );
+};

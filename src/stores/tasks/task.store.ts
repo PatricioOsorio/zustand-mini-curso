@@ -1,15 +1,15 @@
-import { ITask, ITaskStatus } from '@interfaces/task.interface'
-import { create, StateCreator } from 'zustand'
-import { devtools } from 'zustand/middleware'
+import { ITask, ITaskStatus } from '@interfaces/task.interface';
+import { create, StateCreator } from 'zustand';
+import { devtools } from 'zustand/middleware';
 
-type ITaskRecord = Record<string, ITask>
+type ITaskRecord = Record<string, ITask>;
 
 export interface ITaskState {
-  draggingTaskId?: string
-  tasks: ITaskRecord
-  getTaskByStatus: (status: ITaskStatus) => ITask[]
-  setDraggingTaskId: (taskId: string) => void
-  removeDraggingTaskId: () => void
+  draggingTaskId?: string;
+  tasks: ITaskRecord;
+  getTaskByStatus: (status: ITaskStatus) => ITask[];
+  setDraggingTaskId: (taskId: string) => void;
+  removeDraggingTaskId: () => void;
 }
 
 export interface ITaskActions {}
@@ -44,18 +44,18 @@ const storeApi: StateCreator<ITaskState> = (set, get) => ({
   },
 
   getTaskByStatus: (status: ITaskStatus) => {
-    const tasks = get().tasks
+    const tasks = get().tasks;
 
-    return Object.values(tasks).filter((task) => task.status === status)
+    return Object.values(tasks).filter((task) => task.status === status);
   },
 
   setDraggingTaskId(taskId: string) {
-    set({ draggingTaskId: taskId })
+    set({ draggingTaskId: taskId });
   },
 
   removeDraggingTaskId() {
-    set({ draggingTaskId: undefined })
+    set({ draggingTaskId: undefined });
   },
-})
+});
 
-export const useTaskStore = create<ITaskState>()(devtools(storeApi))
+export const useTaskStore = create<ITaskState>()(devtools(storeApi));

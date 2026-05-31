@@ -1,5 +1,5 @@
-import { SideMenu } from '../components'
-import { Outlet } from 'react-router-dom'
+import { SideMenu } from '../components';
+import { Outlet } from 'react-router-dom';
 
 export const DashboardLayout = () => {
   return (
@@ -12,5 +12,5 @@ export const DashboardLayout = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

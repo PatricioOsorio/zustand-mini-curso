@@ -1,7 +1,7 @@
-import { PandaBear } from '@components/PandaBear'
-import { PolarBear } from '@components/PolarBear'
-import { BlackBear } from '@components/BlackBear'
-import { BearsList } from '@components/BearsList'
+import { PandaBear } from '@components/PandaBear';
+import { PolarBear } from '@components/PolarBear';
+import { BlackBear } from '@components/BlackBear';
+import { BearsList } from '@components/BearsList';
 
 export const BearPage = () => {
   return (
@@ -17,5 +17,5 @@ export const BearPage = () => {
         <BearsList />
       </div>
     </>
-  )
-}
+  );
+};

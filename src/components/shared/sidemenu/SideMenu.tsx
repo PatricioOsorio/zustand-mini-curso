@@ -1,4 +1,4 @@
-import type { IconType } from 'react-icons'
+import type { IconType } from 'react-icons';
 import {
   IoSpeedometerOutline,
   IoPawOutline,
@@ -6,16 +6,16 @@ import {
   IoHeartOutline,
   IoListOutline,
   IoAccessibilityOutline,
-} from 'react-icons/io5'
-import { NavLink } from 'react-router-dom'
-import './SideMenu.css'
-import { SideMenuItem } from './SideMenuItem'
+} from 'react-icons/io5';
+import { NavLink } from 'react-router-dom';
+import './SideMenu.css';
+import { SideMenuItem } from './SideMenuItem';
 
 interface MenuItem {
-  title: string
-  subTitle: string
-  href: string
-  Icon: IconType
+  title: string;
+  subTitle: string;
+  href: string;
+  Icon: IconType;
 }
 
 const menuItems: MenuItem[] = [
@@ -39,7 +39,7 @@ const menuItems: MenuItem[] = [
     href: '/dashboard/wedding-invitation',
     Icon: IoHeartOutline,
   },
-]
+];
 
 export const SideMenu = () => {
   return (
@@ -89,5 +89,5 @@ export const SideMenu = () => {
         </NavLink>
       </nav>
     </div>
-  )
-}
+  );
+};

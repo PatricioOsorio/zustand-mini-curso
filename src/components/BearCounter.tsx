@@ -1,10 +1,10 @@
-import { WhiteCard } from './shared/cards/WhiteCard'
+import { WhiteCard } from './shared/cards/WhiteCard';
 
 export interface IBearCounterProps {
-  title: string
-  value: number
-  onAdd: () => void
-  onSubtract: () => void
+  title: string;
+  value: number;
+  onAdd: () => void;
+  onSubtract: () => void;
 }
 
 export const BearCounter = ({ title, value, onAdd, onSubtract }: IBearCounterProps) => {
@@ -18,5 +18,5 @@ export const BearCounter = ({ title, value, onAdd, onSubtract }: IBearCounterPro
         <button onClick={onSubtract}>-1</button>
       </div>
     </WhiteCard>
-  )
-}
+  );
+};

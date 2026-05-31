@@ -1,22 +1,22 @@
-import { ITask } from '@interfaces/task.interface'
-import { useTaskStore } from '@stores/tasks/task.store'
-import { IoReorderTwoOutline } from 'react-icons/io5'
+import { ITask } from '@interfaces/task.interface';
+import { useTaskStore } from '@stores/tasks/task.store';
+import { IoReorderTwoOutline } from 'react-icons/io5';
 
 export interface ISingleTaskProps {
-  task: ITask
+  task: ITask;
 }
 
 export const SingleTask: React.FC<ISingleTaskProps> = ({ task }) => {
-  const setDraggingTaskId = useTaskStore((state) => state.setDraggingTaskId)
-  const removeDraggingTaskId = useTaskStore((state) => state.removeDraggingTaskId)
+  const setDraggingTaskId = useTaskStore((state) => state.setDraggingTaskId);
+  const removeDraggingTaskId = useTaskStore((state) => state.removeDraggingTaskId);
 
   const handleDragStart = () => {
-    setDraggingTaskId(task.id)
-  }
+    setDraggingTaskId(task.id);
+  };
 
   const handleDragEnd = () => {
-    removeDraggingTaskId()
-  }
+    removeDraggingTaskId();
+  };
 
   return (
     <div
@@ -32,5 +32,5 @@ export const SingleTask: React.FC<ISingleTaskProps> = ({ task }) => {
         <IoReorderTwoOutline />
       </span>
     </div>
-  )
-}
+  );
+};
