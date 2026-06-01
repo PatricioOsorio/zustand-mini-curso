@@ -11,6 +11,7 @@ export interface ITaskState {
   setDraggingTaskId: (taskId: string) => void;
   removeDraggingTaskId: () => void;
   changeStatus: (taskId: string, status: ITaskStatus) => void;
+  onTaskDrop: (status: ITaskStatus) => void;
 }
 
 export interface ITaskActions {}
@@ -67,6 +68,14 @@ const storeApi: StateCreator<ITaskState> = (set, get) => ({
     };
 
     set((state) => ({ tasks: { ...state.tasks, [taskId]: updatedTask } }));
+  },
+
+  onTaskDrop(status: ITaskStatus) {
+    const taskId = get().draggingTaskId;
+    if (!taskId) return;
+
+    get().changeStatus(taskId, status);
+    get().removeDraggingTaskId();
   },
 });
 

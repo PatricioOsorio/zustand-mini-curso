@@ -13,10 +13,9 @@ interface IJiraTasksProps {
 }
 
 export const JiraTasks = ({ title, tasks, value }: IJiraTasksProps) => {
-  const changeStatus = useTaskStore((s) => s.changeStatus);
+  const onTaskDrop = useTaskStore((s) => s.onTaskDrop);
+  const isDragging = useTaskStore((s) => !!s.draggingTaskId);
 
-  const draggingTaskId = useTaskStore((s) => s.draggingTaskId!);
-  const isDragging = !!draggingTaskId;
   const [isOver, setIsOver] = useState(false);
 
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
@@ -33,9 +32,7 @@ export const JiraTasks = ({ title, tasks, value }: IJiraTasksProps) => {
     e.preventDefault();
 
     setIsOver(false);
-    changeStatus(draggingTaskId, value);
-
-    console.log(`drop ${value}`);
+    onTaskDrop(value);
   };
 
   return (
