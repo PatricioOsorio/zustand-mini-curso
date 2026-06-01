@@ -1,13 +1,18 @@
 import { ITask, ITaskStatus } from '@interfaces/task.interface';
 import { create, StateCreator } from 'zustand';
 import { devtools } from 'zustand/middleware';
+import { v4 as uuid } from 'uuid';
 
 type ITaskRecord = Record<string, ITask>;
+type INewTask = Omit<ITask, 'id'>;
 
 export interface ITaskState {
   draggingTaskId?: string;
   tasks: ITaskRecord;
+
   getTaskByStatus: (status: ITaskStatus) => ITask[];
+  addTask: (partialTask: INewTask) => void;
+
   setDraggingTaskId: (taskId: string) => void;
   removeDraggingTaskId: () => void;
   changeStatus: (taskId: string, status: ITaskStatus) => void;
@@ -49,6 +54,18 @@ const storeApi: StateCreator<ITaskState> = (set, get) => ({
     const tasks = get().tasks;
 
     return Object.values(tasks).filter((task) => task.status === status);
+  },
+
+  addTask(partialTask: INewTask) {
+    const id = uuid();
+    const newTask: ITask = {
+      id,
+      title: partialTask.title,
+      status: partialTask.status,
+      description: partialTask.description,
+    };
+
+    set((s) => ({ tasks: { ...s.tasks, [id]: newTask } }));
   },
 
   setDraggingTaskId(taskId: string) {
