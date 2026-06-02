@@ -2,10 +2,11 @@ import { ITask, ITaskStatus } from '@interfaces/task.interface';
 import { create, StateCreator } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { v4 as uuid } from 'uuid';
-import { produce } from 'immer';
+import { immer } from 'zustand/middleware/immer';
 
 type ITaskRecord = Record<string, ITask>;
 type INewTask = Omit<ITask, 'id'>;
+type IStoreApi = StateCreator<ITaskState, [['zustand/devtools', never], ['zustand/immer', never]]>;
 
 export interface ITaskState {
   draggingTaskId?: string;
@@ -22,7 +23,7 @@ export interface ITaskState {
 
 export interface ITaskActions {}
 
-const storeApi: StateCreator<ITaskState> = (set, get) => ({
+const storeApi: IStoreApi = (set, get) => ({
   draggingTaskId: undefined,
   tasks: {
     'TASK-1': {
@@ -58,20 +59,27 @@ const storeApi: StateCreator<ITaskState> = (set, get) => ({
   },
 
   addTask(partialTask: INewTask) {
-    const id = uuid();
     const newTask: ITask = {
-      id,
+      id: uuid(),
       title: partialTask.title,
       status: partialTask.status,
       description: partialTask.description,
     };
 
+    // ? Native
     // set((s) => ({ tasks: { ...s.tasks, [id]: newTask } }));
-    set(
-      produce((s: ITaskState) => {
-        s.tasks[id] = newTask;
-      }),
-    );
+
+    // ? Immer
+    // set(
+    //   produce((s: ITaskState) => {
+    //     s.tasks[id] = newTask;
+    //   }),
+    // );
+
+    // ? Middleware
+    set((s) => {
+      s.tasks[newTask.id] = newTask;
+    });
   },
 
   setDraggingTaskId(taskId: string) {
@@ -85,12 +93,13 @@ const storeApi: StateCreator<ITaskState> = (set, get) => ({
   changeStatus(taskId: string, status: ITaskStatus) {
     const task = get().tasks[taskId];
 
-    const updatedTask: ITask = {
-      ...task,
-      status: status,
-    };
+    // ? Native
+    // set((state) => ({ tasks: { ...state.tasks, [taskId]: task } }));
 
-    set((state) => ({ tasks: { ...state.tasks, [taskId]: updatedTask } }));
+    // ? Immer
+    set((s) => {
+      s.tasks[task.id].status = status;
+    });
   },
 
   onTaskDrop(status: ITaskStatus) {
@@ -102,4 +111,4 @@ const storeApi: StateCreator<ITaskState> = (set, get) => ({
   },
 });
 
-export const useTaskStore = create<ITaskState>()(devtools(storeApi));
+export const useTaskStore = create<ITaskState>()(devtools(immer(storeApi)));
