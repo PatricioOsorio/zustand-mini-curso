@@ -1,11 +1,8 @@
 import { DragEvent, useState } from 'react';
+import Swal from 'sweetalert2';
 
 import { ITask, ITaskStatus } from '@interfaces/task.interface';
-import {
-  IoAddOutline,
-  IoCheckmarkCircleOutline,
-  IoEllipsisHorizontalOutline,
-} from 'react-icons/io5';
+import { IoAddOutline, IoCheckmarkCircleOutline } from 'react-icons/io5';
 import { SingleTask } from './SingleTask';
 import { useTaskStore } from '@stores/tasks/task.store';
 import { cn } from '@utils/cn';
@@ -13,10 +10,10 @@ import { cn } from '@utils/cn';
 interface IJiraTasksProps {
   title: string;
   tasks: ITask[];
-  value: ITaskStatus;
+  status: ITaskStatus;
 }
 
-export const JiraTasks = ({ title, tasks, value }: IJiraTasksProps) => {
+export const JiraTasks = ({ title, tasks, status }: IJiraTasksProps) => {
   const onTaskDrop = useTaskStore((s) => s.onTaskDrop);
   const isDragging = useTaskStore((s) => !!s.draggingTaskId);
   const addTask = useTaskStore((s) => s.addTask);
@@ -37,13 +34,37 @@ export const JiraTasks = ({ title, tasks, value }: IJiraTasksProps) => {
     e.preventDefault();
 
     setIsOver(false);
-    onTaskDrop(value);
+    onTaskDrop(status);
   };
 
-  const handleAddTask = () => {
+  const showNewTaskModal = async () =>
+    Swal.fire({
+      title: 'Nueva tarea',
+      input: 'text',
+      inputLabel: 'Nombre de la tarea',
+      showCancelButton: true,
+      inputValidator: (value) => {
+        if (!value) return 'Debe ingrsar nombre de tarea';
+      },
+    });
+
+  const handleAddTask = async () => {
+    const { isConfirmed, value } = await showNewTaskModal();
+
+    if (!isConfirmed)
+      return Swal.fire({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        title: 'Cancelado',
+        timer: 3000,
+        timerProgressBar: true,
+        icon: 'error',
+      });
+
     addTask({
-      title: 'Tarea #',
-      status: value,
+      title: value,
+      status: status,
       description: 'Description',
     });
   };
