@@ -1,11 +1,9 @@
-import { DragEvent, useState } from 'react';
-import Swal from 'sweetalert2';
+import { IoAddOutline, IoCheckmarkCircleOutline } from 'react-icons/io5';
 
 import { ITask, ITaskStatus } from '@interfaces/task.interface';
-import { IoAddOutline, IoCheckmarkCircleOutline } from 'react-icons/io5';
-import { SingleTask } from './SingleTask';
-import { useTaskStore } from '@stores/tasks/task.store';
 import { cn } from '@utils/cn';
+import { SingleTask } from '../SingleTask';
+import { useJiraTask } from './useJiraTask';
 
 interface IJiraTasksProps {
   title: string;
@@ -14,61 +12,17 @@ interface IJiraTasksProps {
 }
 
 export const JiraTasks = ({ title, tasks, status }: IJiraTasksProps) => {
-  const onTaskDrop = useTaskStore((s) => s.onTaskDrop);
-  const isDragging = useTaskStore((s) => !!s.draggingTaskId);
-  const addTask = useTaskStore((s) => s.addTask);
+  const {
+    // Props
+    isDragging,
+    isOver,
 
-  const [isOver, setIsOver] = useState(false);
-
-  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-
-    setIsOver(true);
-  };
-  const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-
-    setIsOver(false);
-  };
-  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-
-    setIsOver(false);
-    onTaskDrop(status);
-  };
-
-  const showNewTaskModal = async () =>
-    Swal.fire({
-      title: 'Nueva tarea',
-      input: 'text',
-      inputLabel: 'Nombre de la tarea',
-      showCancelButton: true,
-      inputValidator: (value) => {
-        if (!value) return 'Debe ingrsar nombre de tarea';
-      },
-    });
-
-  const handleAddTask = async () => {
-    const { isConfirmed, value } = await showNewTaskModal();
-
-    if (!isConfirmed)
-      return Swal.fire({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        title: 'Cancelado',
-        timer: 3000,
-        timerProgressBar: true,
-        icon: 'error',
-      });
-
-    addTask({
-      title: value,
-      status: status,
-      description: 'Description',
-    });
-  };
-
+    // Handlers
+    handleDragOver,
+    handleDragLeave,
+    handleDrop,
+    handleAddTask,
+  } = useJiraTask({ status });
   return (
     <div
       className={cn(
