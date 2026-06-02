@@ -2,6 +2,7 @@ import { ITask, ITaskStatus } from '@interfaces/task.interface';
 import { create, StateCreator } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { v4 as uuid } from 'uuid';
+import { produce } from 'immer';
 
 type ITaskRecord = Record<string, ITask>;
 type INewTask = Omit<ITask, 'id'>;
@@ -65,7 +66,12 @@ const storeApi: StateCreator<ITaskState> = (set, get) => ({
       description: partialTask.description,
     };
 
-    set((s) => ({ tasks: { ...s.tasks, [id]: newTask } }));
+    // set((s) => ({ tasks: { ...s.tasks, [id]: newTask } }));
+    set(
+      produce((s: ITaskState) => {
+        s.tasks[id] = newTask;
+      }),
+    );
   },
 
   setDraggingTaskId(taskId: string) {
