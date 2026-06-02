@@ -1,8 +1,9 @@
 import { ITask, ITaskStatus } from '@interfaces/task.interface';
 import { create, StateCreator } from 'zustand';
-import { devtools } from 'zustand/middleware';
+import { devtools, persist } from 'zustand/middleware';
 import { v4 as uuid } from 'uuid';
 import { immer } from 'zustand/middleware/immer';
+import { LOCAL_STORAGE_KEY } from '@utils/constants';
 
 type ITaskRecord = Record<string, ITask>;
 type INewTask = Omit<ITask, 'id'>;
@@ -111,4 +112,6 @@ const storeApi: IStoreApi = (set, get) => ({
   },
 });
 
-export const useTaskStore = create<ITaskState>()(devtools(immer(storeApi)));
+export const useTaskStore = create<ITaskState>()(
+  devtools(persist(immer(storeApi), { name: LOCAL_STORAGE_KEY.TASK })),
+);

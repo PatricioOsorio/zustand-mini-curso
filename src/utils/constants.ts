@@ -1,6 +1,7 @@
 export const LOCAL_STORAGE_KEY = {
   PERSON: 'ls-person',
   BEAR: 'ls-bear',
+  TASK: 'ls-task'
 };
 
 export const SESSION_STORAGE_KEY = {
