@@ -8,7 +8,7 @@ const firebaseRaw: StateStorage = {
       const res = await fetch(`${FIREBASE_BASE_URL}/${name}.json`);
       const data = await res.json();
 
-      console.log('getItem', { data });
+      // console.log('getItem', { data });
       // return data;
       return JSON.stringify(data);
     } catch (error) {

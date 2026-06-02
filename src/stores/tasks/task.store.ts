@@ -13,6 +13,8 @@ export interface ITaskState {
   draggingTaskId?: string;
   tasks: ITaskRecord;
 
+  totalTasks: () => number;
+
   getTaskByStatus: (status: ITaskStatus) => ITask[];
   addTask: (partialTask: INewTask) => void;
 
@@ -51,6 +53,12 @@ const storeApi: IStoreApi = (set, get) => ({
       description: 'Description for Task 4',
       status: 'open',
     },
+  },
+
+  totalTasks() {
+    const tasks = get().tasks;
+
+    return Object.keys(tasks).length;
   },
 
   getTaskByStatus: (status: ITaskStatus) => {
